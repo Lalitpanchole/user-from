@@ -11,7 +11,7 @@ export default function Home() {
       const token = localStorage.getItem("token"); // ✅ fixed
       console.log(token);
       const res = await axios.get(
-        "http://localhost:5000/api/user/profile",
+        "https://user-from-api-backend.onrender.com/api/profile",
         {
           headers: {
           Authorization: `Bearer ${token}`
