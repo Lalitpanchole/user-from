@@ -34,14 +34,14 @@ export default function Register() {
             onChange={(e)=> setName(e.target.value)}
            className='w-2xl h-10 rounded-xl border-none shadow-xl bg-amber-100 my-5' />
             <input 
-            type='text'
+            type='email'
             placeholder='Your Email'
             value={email}
             onChange={(e)=> setEmail(e.target.value)}
             className='w-2xl h-10 rounded-xl border-none shadow-xl bg-amber-100'
             />
             <input 
-             type="text"
+             type="password"
             placeholder='Your Password'
             value={password}
             onChange={(e)=> setPassword(e.target.value)}
