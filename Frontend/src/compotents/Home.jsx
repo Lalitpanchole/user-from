@@ -8,21 +8,26 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const token = localStorage.getItem("token"); // ✅ fixed
-      console.log(token);
+      const token = localStorage.getItem("token");
+      console.log("Token:", token);
+
+      // ✅ await use karo
       const res = await axios.get(
         "https://user-from-api-backend.onrender.com/api/profile",
         {
           headers: {
-          Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
       console.log("User Data:", res.data);
+
+      // ✅ user set karo
       setUser(res.data.user);
 
       alert("Show now data ✅");
+
     } catch (error) {
       console.log(error);
       alert(error.response?.data?.message || "❌ Failed to fetch profile");
@@ -35,7 +40,6 @@ export default function Home() {
         <button type="submit">Get Profile</button>
       </form>
 
-      {/* ✅ Correct condition */}
       {user ? (
         <div>
           <h1 className="text-2xl font-bold">{user.name}</h1>
