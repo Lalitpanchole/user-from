@@ -9,7 +9,7 @@ export default function Register() {
     const handelInput = async(e)=>{
        e.preventDefault();
         try {
-               const res = await axios.post("http://localhost:5000/api/user",{
+               const res = await axios.post("https://user-from-api-backend.onrender.com/api/user",{
                 name,
                 email,
                 password
