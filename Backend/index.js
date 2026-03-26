@@ -10,6 +10,9 @@ app.use(express.json())
 connectDB();
 app.use("/api/user", userRoutes);
 app.use("api/login", userRoutes);
+app.get("/", (req, res) => {
+  res.send("API Running 🚀");
+});
 const PORT =  process.env.PORT || 5000;
 app.listen(PORT, (req ,res)=>{
     console.log(`PORT runing  ${5000}`)
