@@ -31,38 +31,34 @@ export const createUser = async(req, res)=>{
 export const loginUser = async(req, res)=>{
     try {
         const {email, password} = req.body;
+
         if(!email || !password){
-            return res.status(400).json({message: "all requied fields"})
+            return res.status(400).json({message: "all required fields"})
         }
+
         const user = await User.findOne({email});
+
         if(!user){
-      return res.status(404).json({message: "Not found"})
+            return res.status(404).json({message: "Not found"})
         }
         
-       const isMatch = await bcrypt.compare(password, user.password);
-       if(!isMatch){
-        return res.status(400).json({message: "Invalid password"})
-       }
-         return res.status(200).json({
-        message: "Login seccessfull user",
-        seccess: true,
-        user:{
-            id: user._id,
-            email: user.email,
-            password: user.password
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if(!isMatch){
+            return res.status(400).json({message: "Invalid password"})
         }
-     });
-  
+
+        return res.status(200).json({
+            message: "Login successful",
+            success: true,
+            user:{
+                id: user._id,
+                email: user.email
+            }
+        });
+
     } catch (error) {
-          return res(500).json({message: error.message})
+        console.log(error); // 👈 debugging ke liye
+        return res.status(500).json({message: error.message})
     }
-}
-// getData 
-export const getProfile = async(req, res)=>{
-  try {
-    const user = await User.findById(req.user.id).select("-password");
-    res.json({user});
-  } catch (error) {
-    res.status(500).json({message: "error"});
-  }
 }
